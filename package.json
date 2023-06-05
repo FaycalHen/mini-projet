@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fortawesome/fontawesome-free": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.8",
+    "@reduxjs/toolkit": "^1.9.3",
+    "axios": "^1.4.0",
+    "cass": "^0.0.5",
+    "chart.js": "^4.3.0",
+    "nodemailer": "^6.9.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-rating": "^2.0.5",
+    "react-rating-stars-component": "^2.2.0",
+    "react-redux": "^8.0.5",
+    "react-scripts": "^5.0.1",
+    "redux": "^4.2.1",
+    "sass": "^1.58.0",
+    "strapi-sdk-javascript": "^0.3.3"
+  },
+  "devDependencies": {
+    "react-error-overlay": "^6.0.9"
+  }
+}

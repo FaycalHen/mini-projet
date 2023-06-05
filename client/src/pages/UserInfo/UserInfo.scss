@@ -1,0 +1,51 @@
+.userInfo {
+    background-color: #a34545;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  .userInfo__title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .userInfo__content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .userInfo__content__item {
+    margin-bottom: 0.5rem;
+  }
+  
+  .userInfo__content__label {
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+  
+  .userInfo__content__products {
+    margin-top: 1rem;
+  }
+  
+  .userInfo__content__products__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .userInfo__content__products__list__item {
+    margin-bottom: 0.25rem;
+  }
+   
+  .loading {
+    font-size: 2rem;
+    text-align: center;
+    margin: 2rem;
+  }
+  
+  .error {
+    font-size: 2rem;
+    text-align: center;
+    margin: 2rem;
+    color: red;
+  }

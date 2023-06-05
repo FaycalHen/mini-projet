@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "historiques",
+  "info": {
+    "singularName": "historique",
+    "pluralName": "historiques",
+    "displayName": "historique",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "added": {
+      "type": "datetime"
+    },
+    "recipe": {
+      "type": "biginteger"
+    },
+    "clients": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::client.client",
+      "inversedBy": "historiques"
+    },
+    "userId": {
+      "type": "integer"
+    },
+    "profit": {
+      "type": "biginteger"
+    }
+  }
+}

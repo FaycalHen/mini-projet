@@ -1,0 +1,117 @@
+.navbar {
+    height: 60px;
+    .wrapper {
+      padding: 10px 20px 0px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .logo{
+        color: #2879fe;
+      }
+      .item {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        gap: 10px;
+      }
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        .link{
+          text-decoration: none;
+          }
+        
+        }
+        .item {
+          display: flex;
+          align-items: center;
+          font-size: 18px;
+          
+        }
+      .center {
+        font-size: 30px;
+        letter-spacing: 2px;
+      }
+      .right {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        
+        .icons {
+          display: flex;
+          gap: 18px;
+          color: #777;
+          cursor: pointer;
+          .item{
+            button{
+              display: flex;
+              align-items: center;
+              gap: 15px;
+              color:#777;
+              font-size: 14px;
+              border: none;
+              background-color:white;
+          }
+          }
+          .login{
+            position: relative;
+            top: -1px;
+            right: 10px;
+          }
+          .carticon {
+            position: relative;
+            top: -1px;
+            span {
+              font-size: 12px;
+              width: 20px;
+              height: 20px;
+              border-radius: 50%;
+              background-color: #2879fe;
+              color: white;
+              position: absolute;
+              right: -10px;
+              top: -10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+          .notificon {
+            position: relative;
+            top: -1px;
+            span {
+              font-size: 12px;
+              width: 20px;
+              height: 20px;
+              border-radius: 50%;
+              background-color: #2879fe;
+              color: white;
+              position: absolute;
+              right: -10px;
+              top: -10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+          .likeicon {
+            position: relative;
+              font-size: 25px;
+              //width: 20px;
+              //height: 20px;
+              //border-radius: 50%;
+              //background-color: #2879fe;
+              //color: white;
+              //position: absolute;
+              //right: -10px;
+              top: -1px;
+              display: flex;
+              align-items: center;
+              //justify-content: center;
+            
+          }
+        }
+      }
+    }
+  }

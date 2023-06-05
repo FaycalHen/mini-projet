@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "eachrates",
+  "info": {
+    "singularName": "eachrate",
+    "pluralName": "eachrates",
+    "displayName": "eachrate",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "single_rate": {
+      "type": "biginteger"
+    },
+    "prod_ID": {
+      "type": "biginteger"
+    },
+    "cli_ID": {
+      "type": "biginteger"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "clients",
+  "info": {
+    "singularName": "client",
+    "pluralName": "clients",
+    "displayName": "Client",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "email"
+    },
+    "username": {
+      "type": "string"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product",
+      "inversedBy": "clients"
+    },
+    "fullName": {
+      "type": "text"
+    },
+    "phone": {
+      "type": "text"
+    },
+    "password": {
+      "type": "text"
+    },
+    "admin": {
+      "type": "boolean"
+    },
+    "historiques": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::historique.historique",
+      "mappedBy": "clients"
+    },
+    "notifications": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::notification.notification",
+      "mappedBy": "clients"
+    },
+    "likes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::like.like",
+      "mappedBy": "clients"
+    }
+  }
+}

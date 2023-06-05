@@ -1,0 +1,91 @@
+.paiment-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    h1 {
+      margin-bottom: 20px;
+    }
+    form{
+        align-items: center;
+        justify-content: center;
+    }
+    .wrap{
+        display: flex;
+        flex-direction: row;
+    }
+    .left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-left: 30px;  
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+
+        label {
+          margin-bottom: 10px;
+        }
+  
+        input {
+          padding: 10px;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+          font-size: 16px;
+        }
+      }
+    }
+    .right {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        
+        margin-left: 60px; 
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 20px;
+  
+          label {
+            margin-bottom: 10px;
+          }
+    
+          input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+          }
+        }
+      }
+    button {
+        padding: 10px;
+        padding-left:30px ;
+        padding-right:30px ;
+        margin-left:2.1in;
+        border-radius: 5px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: #0069d9;
+        }
+      }
+      button.success {
+        background-color: #4caf50;
+      }
+      
+      button.success:hover,
+      button.success:active {
+        background-color: #45a049;
+      }
+      
+      button[disabled] {
+        cursor: not-allowed;
+      }
+  }

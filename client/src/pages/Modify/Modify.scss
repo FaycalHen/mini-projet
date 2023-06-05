@@ -1,0 +1,123 @@
+.modify-container {
+    max-width: 1200px;
+    padding:0px;
+    gap: 10px;
+    margin:0;
+    .wrap {
+      padding: 10px 3px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    .item {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+    }
+    .leftheader {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      .iconh {
+          display: flex;
+          gap: 15px;
+          color: #777;
+          cursor: pointer;
+          
+      }
+    }}
+    .profile-header {
+      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 50px;
+      margin-left: 1.5in;
+    
+      .profile-image {
+        width: 50px;
+        height: 100px;
+        margin-top: 50px;
+      }
+  
+      .profile-info {
+        h2 {
+          font-size: 36px;
+          margin-bottom: 10px;
+          text-decoration: underline;
+        }
+  
+        p {
+          font-size: 20px;
+          color: #666;
+        }
+      }
+    }
+  
+    .profile-body {
+      
+      display: flex;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 50px;
+      flex-direction: column;
+  
+      .profile-about {
+        /*display: flex;
+        */width: fit-content;
+        gap: 10;
+        h3 {
+          margin-left: 15px;
+          font-size: 24px;
+          margin-bottom: 20px;
+        }
+        .infor{
+            display: flex;
+            margin-left: 30px;
+            flex-direction: column;
+            .item{
+                margin-top: 15px;
+            }
+        }
+      }
+  
+      .profile-purchases {
+        h3 {
+          font-size: 24px;
+          margin-bottom: 20px;
+          margin-left: 15px;
+        }
+  
+        ul {
+          list-style:none;
+          padding: 0;
+          margin: 0;
+  
+          li {
+            margin-left: 30px;
+            font-size: 18px;
+            line-height: 1.5;
+            color: #666;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  
+    .profile-footer {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 50px;
+      button{
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        
+        &:hover {
+          background-color: #0069d9;
+        }
+      }
+    }
+}
