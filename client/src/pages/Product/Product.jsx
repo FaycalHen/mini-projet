@@ -8,7 +8,7 @@ import useFetch from '../../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
 import { useParams ,Link} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart,addToWishlist,removeLike} from '../../Redux/CartReducer';
+import { addToCart,addToCartAcc,addToWishlist,removeLike} from '../../Redux/CartReducer';
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -170,6 +170,7 @@ console.log(all);
                     taille()<=0
                         ?<div>
                         {taille()}
+                        <h5>out of stock</h5>
                         </div>
                         :
                         <div className="inputItem">
@@ -185,25 +186,26 @@ console.log(all);
                         <input type="radio" id="XL" value="t_XL" name="size" onChange={handleChange} checked={sort === "t_XL"} />
                         <label htmlFor="XL">XL</label>
                     </div>
-                    :<span>hh</span>
+                    :
+                    <span>{qnt}</span>
+                    
+                    
+                    
+                    
+                    
                     }
-                    {taille()<=0
+                    {/*taille()<=0
                     ?<h5>out of stock</h5>
                     :
                     <div>
                         {taille()}
                     </div> 
-                }
+                */}
                     <button className="add" onClick={() => {
-                        if (current.length === 0 || taille()<=0 ) {
-                            if(taille()<=0 )
-                            {
-                            alert("OUT OF STOCK !!")
-                            }
-                            else{
+                        if (current.length === 0) {
                             navigate('/login');
-                            alert("please log-in first")}
-                        } 
+                            alert("please log-in first")
+                        }
                         else {
                             if(qnt===null){
                                 dispatch(addToCart({
@@ -224,13 +226,14 @@ console.log(all);
                                 }));
                             }
                             else{
-                                dispatch(addToCart({
+                                dispatch(addToCartAcc({
                                     id:data.id,
                                     title:data.attributes.title,
                                     description:data.attributes.description,
                                     price:data.attributes.price,
                                     img:data.attributes.img.data.attributes.url,
                                     quantity,
+                                    qnt,
                                     BuyP:data.attributes.BuyP,
                                     Added:data.attributes.Added,
                                 }));

@@ -15,7 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import useFetch from '../../hooks/useFetch';
-import { removenotif, removeuser, resetCart, resetLike } from '../../Redux/CartReducer';
+import { removenot, removenotif, removeuser, resetCart, resetLike } from '../../Redux/CartReducer';
 
 const AdminN =()=>{
     const dispatch=useDispatch()
@@ -73,7 +73,6 @@ const AdminN =()=>{
                                 handleClose() 
                                 dispatch(removeuser())
                                 dispatch(resetCart())
-                                dispatch(resetLike())
                                 dispatch(removenotif())
                                 }
                                 }>

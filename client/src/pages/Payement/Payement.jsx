@@ -27,6 +27,7 @@ const Payement = () => {
     t_S:"",
     t_L:"",
     t_XL:"",
+    Quantity:"",
   });
   const { addNotification , notifications }  = useNotification();
   const client = user.map(option =>( 
@@ -43,6 +44,7 @@ const Payement = () => {
   console.log(notifications)
   const prod = productB.map(option =>( 
     { 
+      qnt:option.qnt,
       id:option.id,
       quantity:option.quantity,
       price:option.price,
@@ -142,6 +144,7 @@ const Payement = () => {
       updated.t_XL = prod[i].qt
     }
     else{updated.t_XL =prod[i].t_XL}
+    updated.Quantity=prod[i].qnt-prod[i].quantity
     await axios
       .put(`http://localhost:1337/api/products/${prod[i].id}`, { data: updated})
       .then((response) => {

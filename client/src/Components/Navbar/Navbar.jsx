@@ -20,7 +20,7 @@ import { deepOrange, deepPurple } from '@mui/material/colors';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
-import { removeuser, resetCart, resetLike } from '../../Redux/CartReducer';
+import { removenotif, removeuser, resetCart, resetLike } from '../../Redux/CartReducer';
 import Notification from '../Notification/Notification';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import LoginIcon from '@mui/icons-material/Login';
@@ -118,7 +118,7 @@ const Navbar =()=>{
                                 handleClose() 
                                 dispatch(removeuser())
                                 dispatch(resetCart())
-                                dispatch(resetLike())
+                                dispatch(removenotif())
                                 }
                                 }>
                             <Link className="link" to="/Login">Logout</Link>

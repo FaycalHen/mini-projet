@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import {  useCallback, useEffect, useState, useId } from "react";
 import "./Addproducts.scss"; 
+import { useDispatch } from 'react-redux';
+import { addTonot } from '../../Redux/CartReducer';
 
 const Checkbox = ({ title, isChecked, onAddCategory, onRemoveCategory }) => {
   const id = useId();
@@ -27,7 +29,7 @@ const Addproducts = ()=>{
   const [allCategories, setAllCategories] = useState([]);
   const [error, setError] = useState(null);
   const [subcats, setsubcats] = useState([]);
-  
+  const dispatch = useDispatch();
   
 
   const [modifiedData, setModifiedData] = useState({
@@ -62,6 +64,9 @@ const Addproducts = ()=>{
       .post("http://localhost:1337/api/products", { data: modifiedData })
       .then((response) => {
         console.log(response);
+        dispatch(addTonot({
+          message:"our dear client we would like to inform you that we added a new product, check it out",
+        }));
       })
       .catch((error) => {
         setError(error);

@@ -9,8 +9,8 @@ import axios from 'axios';
 
 
 
+
 const Products =()=>{
-    
     const catId= parseInt(useParams().id);
     const [maxPrice,setmaxPrice]= useState(50000);
     const [sort,setSort]=useState("asc");

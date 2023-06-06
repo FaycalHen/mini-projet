@@ -6,6 +6,8 @@ import axios from "axios";
 import {  useCallback, useEffect, useState, useId } from "react";
 import "./ProductInfo.scss"; 
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useDispatch } from 'react-redux';
+import { addTonot, removenot, resetCart } from '../../Redux/CartReducer';
 
 const Checkbox = ({ title, isChecked, onAddCategory, onRemoveCategory }) => {
   const id = useId();
@@ -33,6 +35,8 @@ const ProductInfo = ()=>{
     const [subcats, setsubcats] = useState([]);
     const [select, setselected] = useState([]);
     const [allproducts, setAllproducts] = useState([]);
+    const dispatch = useDispatch();
+
     const products = allproducts.map(option =>( 
       { 
         id:option.id,
@@ -76,7 +80,11 @@ const ProductInfo = ()=>{
           .put(`http://localhost:1337/api/products/${prodId}`, { data: modifiedData })
           .then((response) => {
             console.log(response);
+            dispatch(addTonot({
+              message:"Dear client some changes happend to product :"+prodId+", check it out",
+            }));
             alert(`product ${prodId} has been modified`);
+
           })
           .catch((error) => {
             setError(error);

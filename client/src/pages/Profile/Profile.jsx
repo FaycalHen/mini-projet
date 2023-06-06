@@ -13,16 +13,34 @@ import FormHelperText from '@mui/material/FormHelperText';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import { removeuser, resetCart, resetLike } from '../../Redux/CartReducer';
+import { removenot, removenotif, removeuser, resetCart, resetLike } from '../../Redux/CartReducer';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import useFetch from '../../hooks/useFetch';
 
 const Profile = () => {
   const products = useSelector((state) => state.cart.products);
   const like = useSelector((state) => state.cart.like);
   const current= useSelector((state)=> state.cart.current);
   const dispatch=useDispatch();
-
+  const userId=current[0].id;
+  const {data,loading,errore} = useFetch(
+    `/clients/${userId}?populate=products`
+    );
   const name = current?.map((cur) => cur.fullName.split(" ").map((n) => n[0]).join("").toUpperCase());
+  const pr = useSelector((state) => state.cart.notif);
+  const p = useSelector((state) => state.cart.ungoingnotif);
+  console.log(pr)
+  const op=pr.map(op=>(
+  {
+    notif:op.message,
+  }
+  ))
+
+  const o=p.map(op=>(
+    {
+      notif:op.message,
+    }
+    ))
 
   console.log(current)
   return (
@@ -96,17 +114,45 @@ const Profile = () => {
         <div className="profile-purchases">
           <h3>Purchased Products</h3>
           <ul>
-            {products?.map((product) => (
-              <li key={product.id}>{product.title}&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;price:&nbsp;&nbsp;{product.price}&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;quantity:&nbsp;&nbsp;{product.quantity}</li>
-            ))}
+          {data?.attributes.products.data.map(product=>(
+                  <div className="item">
+                      <p>Title</p>
+                        <FormControl disabled variant="standard">
+                        <Input defaultValue={product.attributes.title} />
+                        </FormControl>
+                  </div>
+                ))} 
           </ul>
+        </div>
+        <div className="profile-notif">
+          <h3>Notifications</h3>
+            <ul>
+              {
+              op.length !== 0 || o.length !== 0 
+              ? (
+                <div>
+                  {op?.map((message) => (
+                    <div key={message.id}>
+                      <h5>{message.notif}</h5>
+                    </div>
+                  ))}
+                  {o?.map((message) => (
+                      <div key={message.id}>
+                        <h5>{message.notif}</h5>
+                      </div>
+                    ))}
+                  </div>
+                  )
+              : <h5>no notifications for the moment </h5>
+              }
+            </ul>
         </div>
       </div>
       <div className="profile-footer">
         <button><Link className="link" to="/Login" onClick={()=>{
             dispatch(removeuser())
             dispatch(resetCart())
-            dispatch(resetLike())
+            dispatch(removenotif())
         }}>Logout</Link></button>
       </div>
   </div>

@@ -13,7 +13,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import { removeuser, resetCart, resetLike } from '../../Redux/CartReducer';
+import { removenotif, removeuser, resetCart, resetLike } from '../../Redux/CartReducer';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios';
 
@@ -146,6 +146,7 @@ const Modify = () => {
             dispatch(removeuser())
             dispatch(resetCart())
             dispatch(resetLike())
+            dispatch(removenotif())
         }}>Logout</Link></button>
       </div>
   </div>

@@ -41,8 +41,31 @@ const Likes = () => {
     }
   ));
   console.log(products)
+  const prod = Data.map(product =>(
+    { 
+      id:product.id,
+      img: product.attributes.img,
+      title: product.attributes.title,
+      price: product.attributes.price,
+      title: product.attributes.title,
+    }
+  ));
+  console.log(prod)
 
-  
+
+
+  const display = prod.filter((item) => products.some((product) => product.id === item.id));
+console.log(display);
+
+const displayObject = display.reduce((acc, item, index) => {
+  acc[index] = { id: item.id, attributes: item };
+  return acc;
+}, {});
+
+console.log(displayObject);
+
+
+
   useEffect(() => {
     axios
       .get("http://localhost:1337/api/likes?populate=products,clients")
@@ -57,6 +80,15 @@ const Likes = () => {
       .get(`http://localhost:1337/api/likes/${id}?populate=*`)
       .then(({ data }) => {
         setlikes(data.data);
+        console.log(data.data);
+      })
+      .catch((error) => setError(error));
+     
+  }, []);
+  useEffect(()=>{
+    axios  
+      .get(`http://localhost:1337/api/products?populate=*`)
+      .then(({ data }) => {
         setdata(data.data);
         console.log(data.data);
       })
@@ -68,15 +100,13 @@ const Likes = () => {
       <Navbar/>
       <div className="centerl">
       <h1>Products Liked</h1>
-      {products?.map((item) => (
-        <div className="item" key={item.id} >
-          <img src={process.env.REACT_APP_UPLOAD_URL + item.img} alt="" />
+      {Object.values(displayObject).map((item) => (
+        <div className="item" key={item.id}>
+          <img src={process.env.REACT_APP_UPLOAD_URL + item?.attributes?.img?.data?.attributes?.url} alt="" />
           <div className="details">
-            <h1>{item.title}</h1>
-            <p>{item.description?.substring(0,100)}</p>
-            <div className="price">
-               {item.price}DA 
-            </div>
+            <h1>{item.attributes.title}</h1>
+            <p>{item.attributes.description?.substring(0, 100)}</p>
+            <div className="price">{item.attributes.price}DA</div>
           </div>
           <DeleteOutlinedIcon
             className="delete"

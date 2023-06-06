@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   products: [],
-  like:[],
+  ungoingnotif:[],
   current:[],
   notif:[],
 };
@@ -11,6 +11,22 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    addToCartAcc: (state, action) => {
+      const { id,qnt, quantity } = action.payload;
+      const existingItem = state.products.find((item) => item.id === id);
+    if (existingItem) {
+      const availableQuantity = qnt - existingItem.quantity;
+      if (availableQuantity >= quantity) {
+        existingItem.quantity += quantity;
+      } else {
+        // Handle case when quantity exceeds available quantity
+        alert("Sorry sir, you reach the maximum of the quantity product")
+      }
+    } else {
+      state.products.push(action.payload);
+    }
+    },
+    
     addToCart: (state, action) => {
       const { id, tai, quantity } = action.payload;
       const item = state.products.find((item) => item.id === id && item.tai === tai);
@@ -20,6 +36,7 @@ export const cartSlice = createSlice({
           item.qt -= quantity;
           item.quantity += quantity;
         }
+        else{alert("Sorry sir, you reach the maximum of the quantity product")}
       } else {
         state.products.push(action.payload);
       }
@@ -32,21 +49,13 @@ export const cartSlice = createSlice({
     resetCart: (state) => {
       state.products = []
     },
-    addToWishlist:(state, action)=>{
-      const item = state.like.find((item) => item.id === action.payload.id);
-      if(item){
-        state.like=state.like.filter(item=>item.id !== action.payload)
-      }
-      else{
-        state.like.push(action.payload);
-      }
+    addTonot:(state, action)=>{
+      state.notif.push(action.payload);
     },
-    removeLike: (state,action) => {
-      state.like=state.like.filter(item=>item.id !== action.payload)
+    removenot: (state,action) => {
+      state.notif= []
     },
-    resetLike: (state,action) => {
-      state.like = []
-    }, 
+    
     addcurrent: (state, action) => {
       if (state.current.length === 0) {
         state.current.push(action.payload);
@@ -66,6 +75,6 @@ export const cartSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { addToCart,removeItem,resetCart,addToWishlist,removeLike,addcurrent,removeuser,resetLike,addnotif,removenotif} = cartSlice.actions;
+export const { addToCart,removeItem,resetCart,addTonot,removenot,addcurrent,removeuser,resetLike,addnotif,removenotif,addToCartAcc} = cartSlice.actions;
 
 export default cartSlice.reducer;
