@@ -19,7 +19,18 @@ const Cart = () => {
     return total;
   };
 
-  
+  const MAX_LENGTH = 20; // Maximum length for the displayed text
+
+  const truncateText = (text) => {
+    if (text.length <= MAX_LENGTH) {
+      return text; // Return the full text if it's shorter than or equal to the maximum length
+    } else {
+      return text.slice(0, MAX_LENGTH) + '...'; // Truncate the text and append an ellipsis
+    }
+  };
+  const handleTruncate = (text) => {
+    return truncateText(text);
+  };
   return (
     <div className="cart">
       <h1>Products in your cart</h1>
@@ -30,14 +41,14 @@ const Cart = () => {
               <img src={process.env.REACT_APP_UPLOAD_URL + item.img} alt="" />
               <div className="details">
                 <h1>{item.title}</h1>
-                <p>{item.description?.substring(0, 100)}</p>
+                <p>{handleTruncate(item.description?.substring(0, 100))}</p>
                 <div className="price">
-                  {item.quantity} x {item.price}DA
+                  {item.quantity} x {item.price}DA 
                 </div>
-                <div className="taille">
-                  {item.tai} and 
-                  {item.qt}
-                </div>  
+                <div className="price">
+                  De taille {item.tai.substring(2)} 
+                </div>
+
               </div>
               <DeleteOutlinedIcon
                 className="delete"

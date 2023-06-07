@@ -97,7 +97,6 @@ const Allproducts = () => {
 
         </div>
       </div>
-      <AdFooter/>
     </div>
   )
 }

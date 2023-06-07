@@ -34,30 +34,7 @@ const Sign = () => {
   const handleInputChange = useCallback(({ target: { name, value } }) => {
     setuserData((prevData) => ({ ...prevData, [name]: value }));
   }, []);
-  /*const sendVerificationEmail = async (email) => {
-    const transporter = nodemailer.createTransport({
-      service: 'Gmail', // e.g., Gmail, Yahoo
-      auth: {
-        user: 'faycalhenaoui1@gmail.com',
-        pass: '',
-      },
-    });
-
-    const mailOptions = {
-      from: 'faycalhenaoui1@gmail.com',
-      to: email,
-      subject: 'Email Verification',
-      text: 'Please click the following link to verify your email: http://localhost:1337/',
-    };
-
-    try {
-      await transporter.sendMail(mailOptions);
-      console.log('Verification email sent');
-    } catch (error) {
-      console.error('Error sending verification email:', error);
-    }
-  };
-*/
+  
   useEffect(() => {
     axios
       .get("http://localhost:1337/api/clients")
@@ -74,7 +51,14 @@ const Sign = () => {
       const email = formData.get('email');
       const password = formData.get('password');
       const phone = formData.get('phone');
-    
+      
+      // Check email domain
+      const validDomains = ['gmail.com', 'yahoo.fr'];
+      const domain = email.split('@')[1];
+      if (!validDomains.includes(domain)) {
+        alert('Please enter a valid email address with a domain of gmail.com or yahoo.fr');
+        return;
+      }
       // Check password length
       if (password.length < 8) {
         alert("Password must be at least 8 characters long");

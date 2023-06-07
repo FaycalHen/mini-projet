@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from 'react';
 import axios from 'axios';
 import { addnotif, removenotif } from '../Redux/CartReducer';
 import { useDispatch } from 'react-redux';
-
+import { format } from 'date-fns';
 
 const NotificationContext = createContext();
 export const NotificationProvider = ({ children }) => {
@@ -11,9 +11,12 @@ export const NotificationProvider = ({ children }) => {
 
   const addNotification = (message) => {
     setNotifications([...notifications,message]);
-    dispatch(addnotif({
-      message,
-    }));
+    const currentTime = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
+    const notification = {
+      message: message,
+      time: currentTime,
+    };
+    dispatch(addnotif(notification));
   };
 
   const removeNotification = (index) => {

@@ -23,6 +23,18 @@ const Notification = () => {
     ))
   console.log(op)
   console.log(o)
+  const MAX_LENGTH = 20; // Maximum length for the displayed text
+
+  const truncateText = (text) => {
+    if (text.length <= MAX_LENGTH) {
+      return text; // Return the full text if it's shorter than or equal to the maximum length
+    } else {
+      return text.slice(0, MAX_LENGTH) + '...'; // Truncate the text and append an ellipsis
+    }
+  };
+  const handleTruncate = (text) => {
+    return truncateText(text);
+  };
   return (
     <div className="notif">
       <h1>Notifications</h1>
@@ -32,12 +44,12 @@ const Notification = () => {
         <div>
           {op?.map((message) => (
             <div key={message.id}>
-              <h5>{message.notif}</h5>
+              <h5>{handleTruncate(message.notif)}</h5>
             </div>
           ))}
           {o?.map((message) => (
               <div key={message.id}>
-                <h5>{message.notif}</h5>
+                <h5>{handleTruncate(message.notif)}</h5>
               </div>
             ))}
           </div>

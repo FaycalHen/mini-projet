@@ -49,11 +49,13 @@ export const cartSlice = createSlice({
     resetCart: (state) => {
       state.products = []
     },
-    addTonot:(state, action)=>{
-      state.notif.push(action.payload);
+    addTonot: (state, action) => {
+      const { message, time } = action.payload;
+      state.ungoingnotif.push({ message, time });
     },
+    
     removenot: (state,action) => {
-      state.notif= []
+      state.ungoingnotif= []
     },
     
     addcurrent: (state, action) => {

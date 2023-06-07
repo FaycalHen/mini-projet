@@ -46,43 +46,55 @@ const Product =()=>{
     const catID = data?.attributes.categories.data[0].id;
     const subcats = data?.attributes.subcats.data[0].id;
     const IDD = data?.id;
-    const clientID = current[0].id;
+    let clientID = null;
+    let user = false;
+    let prod = false;
+    let filteredIDs = null;
+    let prodID = null;
+    let isLiked = null;
+    let cliID = null;
+    let hehe = null;
+    let heh = null;
+
+if(current.length !==0){    
+    clientID = current[0].id;
     console.log(qnt)
-    const isLiked = like.map((opt) => ({
+    
+    isLiked = like.map((opt) => ({
     id: opt.id,
     liked: opt.like,
     }));
 
-    const prodID = all?.map((li) => ({
+    prodID = all?.map((li) => ({
     id: li.id,
     likes: li.attributes.products.data.map((product) => ({
         productID: product.id,
     })),
     }));
 
-    const cliID = all?.map((li) => ({
+    cliID = all?.map((li) => ({
     id: li.id,
     likes: li.attributes.clients.data.map((product) => ({
         clientID: product.id,
     })),
     }));
 
-    const hehe = cliID.flatMap((item) =>
+    hehe = cliID.flatMap((item) =>
     item.likes.map((like) => like.clientID)
     );
-    const heh = prodID.flatMap((item) =>
+    heh = prodID.flatMap((item) =>
     item.likes.map((like) => like.productID)
     );
 
-    const user = hehe.includes(clientID);
-    const prod = heh.includes(IDD);
+    user = hehe.includes(clientID);
+    prod = heh.includes(IDD);
 
-    const filteredIDs = all
+    filteredIDs = all
     .filter((item) =>
         item.attributes.clients.data.some((client) => client.id === clientID)
     )
     .map((item) => item.id);
-
+}
     const handleChange = (e) => {
     const value = e.target.value;
     if (value === sort) {
@@ -161,9 +173,9 @@ console.log(all);
                     <span className='price'>{data?.attributes?.price}DA</span>
                     <p>{data?.attributes?.description}</p>
                     <div className="qnt">
-                        <button onClick={()=>setQuantity((prev)=>prev === 1 ? 1 : prev-1)}>-</button>
+                        <button className='bt-button' onClick={()=>setQuantity((prev)=>prev === 1 ? 1 : prev-1)}>-</button>
                         {quantity}
-                        <button onClick={()=>setQuantity((prev)=>prev+1)}>+</button>
+                        <button className='bt-button' onClick={()=>setQuantity((prev)=>prev+1)}>+</button>
                     </div>
                     {qnt===null
                     ?
@@ -187,7 +199,7 @@ console.log(all);
                         <label htmlFor="XL">XL</label>
                     </div>
                     :
-                    <span>{qnt}</span>
+                    null
                     
                     
                     
@@ -313,11 +325,15 @@ console.log(all);
                             ADD TO WISHLIST
                             </button>
 
-
-
-
                         </div>
-                        {<div className="item">
+                        {
+                        current.length===0
+                        ?    
+                        <div className="item">
+                        <Rate id={IDD} cliID={clientID}/>
+                        
+                        </div>
+                        :<div className="item">
                         <Rate id={IDD} cliID={clientID}/>
                         
                         </div>}
@@ -338,15 +354,18 @@ console.log(all);
                 </div>
                 </div>
                 <div className="bottom">
-                {error
-                    ?"something went wrong!!"
-                    :loading 
-                    ?"loading..."
-                    :<div>
-                    <h2> Suggested Products :</h2>
-                    <Suggested catId={catID} sub={subcats}/></div>
-                    }
-                </div>
+                    {error ? (
+                        "something went wrong!!"
+                    ) : loading ? (
+                        "loading..."
+                    ) : (
+                        <div>
+                        <h2 style={{ marginBottom: "20px" }}>Suggested Products:</h2>
+                        <Suggested catId={catID} sub={subcats} />
+                        </div>
+                    )}
+                    </div>
+
             </>)}
             </div>  
             <Footer/> 

@@ -20,8 +20,11 @@ const UserInfo = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [error, setError] = useState(null);
   const {data,loading,errore} = useFetch(
-    `/clients/${userId}?populate=products`
+    `/historiques?populate=products`
     );
+
+  const filteredData = data?.filter((item) => item.attributes.userId === userId);
+  console.log(filteredData)
   console.log(data)
   useEffect(() => {
     axios
@@ -133,14 +136,16 @@ const UserInfo = () => {
               </div>
               <div className="profile-purchases">
                 <h3>Purchased Products</h3>
-                {data?.attributes.products.data.map(product=>(
-                  <div className="item">
-                      <p>Title</p>
-                        <FormControl disabled variant="standard">
-                        <Input defaultValue={product.attributes.title} />
-                        </FormControl>
+                {filteredData?.map((product) => (
+                  <div className="item-value" key={product.id}>
+                    <p>Commande {product.id}</p>
+                    <FormControl disabled variant="standard">
+                      <Input defaultValue={product.attributes.userId} />
+                      <Input defaultValue={product.attributes.recipe} />
+                      <Input defaultValue={product.attributes.added} />
+                    </FormControl>
                   </div>
-                ))} 
+                ))}
               </div>
             </div>
         </div>

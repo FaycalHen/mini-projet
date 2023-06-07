@@ -17,11 +17,13 @@ import UserInfo from '../UserInfo/UserInfo';
 
 const Allclient = () => {
   const products = useSelector((state) => state.cart.products);
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [allClients, setAllClients] = useState([]);
   const [error, setError] = useState(null);
-  const navigate=useNavigate();
+  const [showConfirmation, setShowConfirmation] = useState(false); // Track confirmation pop-up state
+  const [userIdToDelete, setUserIdToDelete] = useState(null); // Track user ID to delete
+  const navigate = useNavigate();
   const clients = allClients.map(option =>( 
     { 
       id:option.id,
@@ -45,18 +47,34 @@ const Allclient = () => {
   }, []);
   
   const handleDelete = (id) => {
-    const select = clients.find(client => client.id === id );
-    if(select.admin === true){alert("can't delete the admin")}
-    else{
-        axios.delete(`http://localhost:1337/api/clients/${id}`)
-          .then(() => {
-            setAllClients(allClients.filter((client) => client.id !== id));
-            alert(`Client ${id} has been deleted`);
-            navigate('/admin/Allclient')
-          })
-          .catch((error) => setError(error));
-        };
-  }
+    const select = clients.find(client => client.id === id);
+    if (select.admin === true) {
+      alert("Can't delete the admin");
+    } else {
+      setUserIdToDelete(id); // Set the user ID to delete
+      setShowConfirmation(true); // Show the confirmation pop-up
+    }
+  };
+
+  const confirmDelete = () => {
+    axios.delete(`http://localhost:1337/api/clients/${userIdToDelete}`)
+      .then(() => {
+        setAllClients(allClients.filter((client) => client.id !== userIdToDelete));
+        alert(`Client ${userIdToDelete} has been deleted`);
+        navigate('/admin/Allclient');
+      })
+      .catch((error) => setError(error));
+
+    // Reset state after deleting the user
+    setShowConfirmation(false);
+    setUserIdToDelete(null);
+  };
+
+  const cancelDelete = () => {
+    // Reset state without deleting the user
+    setShowConfirmation(false);
+    setUserIdToDelete(null);
+  };
   if (error) {
     // Print errors if any
     return <div>An error occured: {error.message}</div>;
@@ -131,7 +149,10 @@ const Allclient = () => {
                     <TableCell align="left">{row.email}</TableCell>
                     <TableCell align="left">{row.phone}</TableCell>
                     <TableCell align="left">{row.fullName}</TableCell>
-                    <TableCell align="left">&nbsp;<DeleteIcon onClick={() => handleDelete(row.id)}/></TableCell>
+                    <TableCell align="left">&nbsp;<DeleteIcon onClick={(e) => {
+                      e.stopPropagation(); // Prevent event propagation
+                      handleDelete(row.id);
+                    }}/></TableCell>
                   </TableRow>
                 ))}
                   <TableRow>
@@ -143,16 +164,25 @@ const Allclient = () => {
                   <TableCell className='title' align="left">{article()}&nbsp;Total Client(s)</TableCell>
                   </TableRow>
                 </TableBody>    
-              
             </Table>
           </TableContainer>
-        
+        {/* Confirmation pop-up */}
+        {showConfirmation && (
+            <div className="confirmation">
+              <div className="confirmation-content">
+                <h3>Are you sure you want to delete this user?</h3>
+                <div className="confirmation-buttons">
+                  <button onClick={confirmDelete}>Yes</button>
+                  <button onClick={cancelDelete}>No</button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
         <div className="right">
 
         </div>
       </div>
-      <AdFooter/>
     </div>
   )
 }

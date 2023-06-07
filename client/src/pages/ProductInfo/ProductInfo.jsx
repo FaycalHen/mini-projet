@@ -34,6 +34,7 @@ const ProductInfo = ()=>{
     const [allCategories, setAllCategories] = useState([]);
     const [subcats, setsubcats] = useState([]);
     const [select, setselected] = useState([]);
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [allproducts, setAllproducts] = useState([]);
     const dispatch = useDispatch();
 
@@ -63,16 +64,25 @@ const ProductInfo = ()=>{
     const handleInputChange = useCallback(({ target: { name, value } }) => {
         setModifiedData((prevData) => ({ ...prevData, [name]: value }));
       }, []);
-      const handleDelete = (prodId) => {
-        const selected =products.find(client => client.id === prodId ); 
-            axios.delete(`http://localhost:1337/api/products/${prodId}`)
-              .then(() => {
-                setAllproducts(allproducts.filter((client) => client.id !== prodId));
-                alert(`product ${prodId} has been deleted`);
-              })
-              .catch((error) => setError(error));
-            
-      }
+      const handleDelete = () => {
+        setShowDeleteConfirmation(true);
+      };
+      const confirmDelete = () => {
+        axios
+          .delete(`http://localhost:1337/api/products/${prodId}`)
+          .then(() => {
+            // Handle success
+            alert(`Product ${prodId} has been deleted`);
+          })
+          .catch((error) => {
+            // Handle error
+            setError(error);
+          });
+      };
+      const cancelDelete = () => {
+        setShowDeleteConfirmation(false);
+      };
+
       const handleSubmit = async (e) => {
         e.preventDefault();
     
@@ -283,10 +293,24 @@ const ProductInfo = ()=>{
                 </div>
               </div>
               <button type="submit">Submit</button>
-              <DeleteIcon onClick={() => handleDelete(prodId)}/>
+              <button className="delete-button" onClick={handleDelete}>
+                <DeleteIcon /> Delete Product 
+              </button>
             </form>
         </div>
       </div>
+      {showDeleteConfirmation && (
+        <div className="delete-confirmation">
+          <div className="delete-confirmation-modal">
+            <h2>Confirm Deletion</h2>
+            <p>Are you sure you want to delete this product?</p>
+            <div className="delete-confirmation-buttons">
+              <button onClick={confirmDelete}>Yes</button>
+              <button onClick={cancelDelete}>No</button>
+            </div>
+          </div>
+        </div>
+      )}
       <AdFooter/>
     </div>
   )

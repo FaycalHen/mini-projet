@@ -100,21 +100,25 @@ const Rate = ({id , cliID}) => {
 
     return (
         <div>
-        <Rating
-            initialRating={totalVotes > 0 ? totalRating / totalVotes : 0}
-            emptySymbol={<FontAwesomeIcon icon={regularStar} />}
-            fullSymbol={<FontAwesomeIcon icon={solidStar} />}
-            readonly
-        />
-        <span>{`(${totalVotes})`}</span>
-
-        <Rating
-            initialRating={userRating}
-            emptySymbol={<FontAwesomeIcon icon={regularStar} />}
-            fullSymbol={<FontAwesomeIcon icon={solidStar} />}
-            onChange={handleRatingChange}
-        />
-        <button onClick={submitRating}>Rate</button>
+            <Rating
+                    initialRating={totalVotes > 0 ? totalRating / totalVotes : 0}
+                    emptySymbol={<FontAwesomeIcon icon={regularStar} />}
+                    fullSymbol={<FontAwesomeIcon icon={solidStar} />}
+                    readonly
+            />
+            <span>{`(${totalVotes})`}</span>
+            
+            <Rating
+                    initialRating={userRating}
+                    emptySymbol={<FontAwesomeIcon icon={regularStar} />}
+                    fullSymbol={<FontAwesomeIcon icon={solidStar} />}
+                    onChange={handleRatingChange}
+            />
+            {
+            cliID === null
+            ?alert("you can't rate please log-in first")
+            :<button onClick={submitRating}>Rate</button>
+            }
         </div>
   );
 };

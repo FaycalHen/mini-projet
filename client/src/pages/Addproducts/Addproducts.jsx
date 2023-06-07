@@ -37,17 +37,16 @@ const Addproducts = ()=>{
     subcats:[],
     description: "",
     title: "",
-    price:"",
-    Added:"",
-    BuyP:"",
-    t_S:"",
-    t_M:"",
-    t_L:"",
-    t_XL:"",
-    type:"",
-    isNew:"",
-    Quantity:"",
-    img:"",
+    price:"0",
+    Added:"0",
+    BuyP:"0",
+    t_S:"0",
+    t_M:"0",
+    t_L:"0",
+    t_XL:"0",
+    type:"normal",
+    isNew:false,
+    Quantity:"0",
   });
   
   
@@ -57,6 +56,7 @@ const Addproducts = ()=>{
     setModifiedData((prevData) => ({ ...prevData, [name]: value }));
   }, []);
 
+  console.log(modifiedData)
   const handleSubmit = async (e) => {
     e.preventDefault();
     

@@ -54,6 +54,7 @@ const Navbar =()=>{
     const formattedOptions = options.map(option =>( 
         { label: option.attributes.title, id:option.id}
     ));
+    const p = useSelector((state) => state.cart.ungoingnotif);
     const [value, setValue] = useState(formattedOptions);
     const [inputValue, setInputValue] = useState(''); 
     const products =useSelector((state)=>state.cart.products)
@@ -182,7 +183,7 @@ const Navbar =()=>{
                         </div>
                         <div className="notificon" onClick={()=>setOpe(!ope)}>
                         <NotificationsActiveIcon sx={{ fontSize: 25 }}/>
-                        <span>{notif.length}</span>    
+                        <span>{notif.length + p.length}</span>    
                         </div>
                         {isAdmin && (
                         <div className="item">
