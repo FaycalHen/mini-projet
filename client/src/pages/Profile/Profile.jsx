@@ -128,7 +128,7 @@ const Profile = () => {
                   </div>
                 </div>
               ))}
-              {current?.map((cur) => (
+              {/*current?.map((cur) => (
                 <div className="item" key={cur.id}>
                   <div className="item-label">
                     <p>Password</p>
@@ -139,7 +139,7 @@ const Profile = () => {
                     </FormControl>
                   </div>
                 </div>
-              ))}
+              ))/*/}
               {current?.map((cur) => (
                 <div className="item" key={cur.id}>
                   <div className="item-label">

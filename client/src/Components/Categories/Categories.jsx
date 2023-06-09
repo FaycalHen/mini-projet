@@ -60,7 +60,7 @@ const Categories = () => {
             <div className="row">
                         <img src="https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
                         <button>
-                            <Link className="link" to="/Coming">Shoes</Link>
+                            <Link className="link" to="/Products/1">Sale</Link>
                         </button>
             </div>
         </div>

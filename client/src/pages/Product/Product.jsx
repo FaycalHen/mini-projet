@@ -276,7 +276,6 @@ console.log(all);
                                     })
                                     .then(() => {
                                         setLike(like.filter(item => item.id !== id));
-                                        alert("supriminaha");
                                         window.location.reload(); // Refresh the page
                                     })
                                     .catch((error) => setError(error));
@@ -293,7 +292,7 @@ console.log(all);
                                     .put(`http://localhost:1337/api/likes/${filteredIDs}`, { data: newProduct })
                                     .then(() => {
                                         setLike([...like, newProduct]);
-                                        alert("Added");
+                                        alert("Added to wishList");
                                         window.location.reload(); // Refresh the page
                                     })
                                     .catch((error) => setError(error));
@@ -314,7 +313,7 @@ console.log(all);
                                     .post("http://localhost:1337/api/likes", { data: newProduct })
                                     .then(() => {
                                     setLike([...like, newProduct]);
-                                    alert("Added");
+                                    alert("Added to WishList");
                                     window.location.reload(); // Refresh the page
                                     })
                                     .catch((error) => setError(error));

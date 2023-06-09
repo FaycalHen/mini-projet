@@ -22,11 +22,11 @@ const Footer =()=>{
                 </div>
                 <div className="item">
                     <h1>About</h1>
-                    <span>lorem epsum ebaekejffaefefqzr nfjf h zjcmnenf zejcnaemajezncaezzjanemj    v hv   njefn znfzen  enfnv </span>
+                    <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis quisquam qui sed, veritatis facilis vero accusantium, mollitia ea laudantium nemo similique nobis voluptates numquam consequuntur dolorum dolores libero! Odit, porro?</span>
                 </div>
                 <div className="item">
                     <h1>Contact</h1>
-                    <span>lorem epsum ebaekejffaefefqzr nfjf h zjcmnenf zejcnaemajezncaezzjanemj    v hv   njefn znfzen  enfnv </span>
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam dolore quis exercitationem eveniet? Qui maiores sequi expedita, rem corrupti magnam illo facilis ea ipsum temporibus dolores. Sunt impedit dolorem facere!</span>
                     
                 </div>
             </div>

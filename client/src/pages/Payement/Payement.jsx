@@ -208,12 +208,12 @@ const [formErrors, setFormErrors] = useState({});
       const errors = {};
     
       // Validate email
-      if (!email.includes('gmail.com') && !email.includes('yahoo.fr') && user[0].email===email) {
+      if (!email.includes('gmail.com') && !email.includes('yahoo.fr') && client[0].email===email) {
         errors.email = 'Invalid email domain. Please use gmail.com or yahoo.fr.';
       }
     
       // Validate password
-      if (user[0].password===password) {
+      if (client[0].password==="") {
         errors.password = 'Invalid password';
       }
       // Add your password validation logic here
@@ -224,13 +224,13 @@ const [formErrors, setFormErrors] = useState({});
       }
     
       // Validate phone number
-      if (user[0].phone===phoneNumber) {
+     /* if (client[0].phone===phoneNumber) {
         errors.phone = 'Invalid phone, use your personal number';
-      }
+      }*/
       // Add your phone number validation logic here
     
       // Validate cardholder name
-      if (cardholderName !== user[0].fullName) {
+      if (cardholderName !== client[0].fullName) {
         errors.cardholderName = 'Cardholder name should match your full name.';
       }
     
@@ -253,8 +253,8 @@ const [formErrors, setFormErrors] = useState({});
     
       return Object.keys(errors).length === 0;
     };
-  
-  
+    console.log(formErrors)
+    
   return (
       <div className="paiment-container">
       <h1>Payment</h1>

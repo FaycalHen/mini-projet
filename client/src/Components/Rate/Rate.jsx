@@ -116,7 +116,7 @@ const Rate = ({id , cliID}) => {
             />
             {
             cliID === null
-            ?alert("you can't rate please log-in first")
+            ?<button>Rate</button>
             :<button onClick={submitRating}>Rate</button>
             }
         </div>
